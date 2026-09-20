@@ -121,6 +121,9 @@ const App = () => {
       path: "*",
       element: <NotFound />,
     },
+    {
+      basename:"/React-Deploy"
+    }
   ]);
   return (
     <UserProvider>
