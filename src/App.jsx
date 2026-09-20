@@ -20,111 +20,113 @@ const Login = lazy(() => import("./pages/Login"));
 import "./App.css";
 
 const App = () => {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: (
-        <Suspense fallback={<Loading />}>
+  const router = createBrowserRouter(
+    [
+      {
+        path: "/",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <div>
+              <Header />
+              <Home />
+            </div>
+          </Suspense>
+        ),
+      },
+      {
+        path: "/Profiles",
+        element: (
           <div>
             <Header />
-            <Home />
+            <ProtectRoutes>
+              <Profiles />
+            </ProtectRoutes>
           </div>
-        </Suspense>
-      ),
-    },
-    {
-      path: "/Profiles",
-      element: (
-        <div>
-          <Header />
-          <ProtectRoutes>
-            <Profiles />
-          </ProtectRoutes>
-        </div>
-      ),
-    },
-    {
-      path: "/Details",
-      element: (
-        <div>
-          <Header />
-          <ProtectRoutes>
-            <Details />
-          </ProtectRoutes>
-        </div>
-      ),
-    },
-    {
-      path: "/About",
-      element: (
-        <div>
-          <Header />
-          <About />
-        </div>
-      ),
-    },
-    {
-      path: "/Books",
-      element: (
-        <div>
-          <Header />
-          <ProtectRoutes>
-            <Books />
-          </ProtectRoutes>
-        </div>
-      ),
-      children: [
-        {
-          path: "materials",
-          element: <StudyMaterials />,
-        },
-        {
-          path: "novels",
-          element: <Novels />,
-        },
-        {
-          path: "papars",
-          element: <PreviousPapars />,
-        },
-      ],
-    },
-    {
-      path: "/Profiles/:id",
-      element: (
-        <div>
-          <Header />
-          <StdentDetails />
-        </div>
-      ),
-    },
-    {
-      path: "/login",
-      element: (
-        <Suspense fallback={<Loading />}>
+        ),
+      },
+      {
+        path: "/Details",
+        element: (
           <div>
-            <Login />
+            <Header />
+            <ProtectRoutes>
+              <Details />
+            </ProtectRoutes>
           </div>
-        </Suspense>
-      ),
-    },
-    {
-      path: "/signup",
-      element: (
-        <Suspense fallback={<Loading />}>
+        ),
+      },
+      {
+        path: "/About",
+        element: (
           <div>
-            <Signup />
+            <Header />
+            <About />
           </div>
-        </Suspense>
-      ),
-    },
+        ),
+      },
+      {
+        path: "/Books",
+        element: (
+          <div>
+            <Header />
+            <ProtectRoutes>
+              <Books />
+            </ProtectRoutes>
+          </div>
+        ),
+        children: [
+          {
+            path: "materials",
+            element: <StudyMaterials />,
+          },
+          {
+            path: "novels",
+            element: <Novels />,
+          },
+          {
+            path: "papars",
+            element: <PreviousPapars />,
+          },
+        ],
+      },
+      {
+        path: "/Profiles/:id",
+        element: (
+          <div>
+            <Header />
+            <StdentDetails />
+          </div>
+        ),
+      },
+      {
+        path: "/login",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <div>
+              <Login />
+            </div>
+          </Suspense>
+        ),
+      },
+      {
+        path: "/signup",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <div>
+              <Signup />
+            </div>
+          </Suspense>
+        ),
+      },
+      {
+        path: "*",
+        element: <NotFound />,
+      },
+    ],
     {
-      path: "*",
-      element: <NotFound />,
+      basename: "/React-Deploy",
     },
-    {
-      basename:"/React-Deploy"
-    }
-  ]);
+  );
   return (
     <UserProvider>
       <RouterProvider router={router} />
