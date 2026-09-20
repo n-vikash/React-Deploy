@@ -6,7 +6,7 @@ const students = [
     course: "B.Tech",
     branch: "CSE",
     college: "SITAM",
-    src: "/assets/yuta.jpg",
+    src: `${import.meta.env.BASE_URL}assets/yuta.jpg`,
   },
   {
     id: 102,
@@ -15,7 +15,7 @@ const students = [
     course: "B.Tech",
     branch: "CSE",
     college: "Lendi",
-    src: "/assets/gojo.jpg",
+    src: `${import.meta.env.BASE_URL}assets/gojo.jpg`,
   },
   {
     id: 103,
@@ -24,7 +24,7 @@ const students = [
     course: "B.Tech",
     branch: "CSE",
     college: "Raghu ",
-    src: "/assets/sukuna.jpg",
+    src: `${import.meta.env.BASE_URL}assets/sukuna.jpg`,
   },
 ];
 
@@ -198,4 +198,4 @@ const papers = [
 //   },
 // ];
 
-export { students, materials, papers, novels};
+export { students, materials, papers, novels };
