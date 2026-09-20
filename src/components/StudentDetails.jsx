@@ -38,6 +38,12 @@ const StudentDetails = () => {
               src={student.src}
               alt={student.name}
               className="student-profile-image"
+              onError={(e) => {
+                console.log("IMAGE FAILED:", student.src);
+              }}
+              onLoad={() => {
+                console.log("IMAGE LOADED:", student.src);
+              }}
             />
 
             <div className="student-profile-info">
