@@ -11,8 +11,6 @@ const StudentDetails = () => {
 
   const student = students.find((user) => user.id === Number(id));
 
-  console.log(student);
-
   if (!student) {
     return (
       <main className="student-details-page">
@@ -38,12 +36,7 @@ const StudentDetails = () => {
               src={student.src}
               alt={student.name}
               className="student-profile-image"
-              onError={(e) => {
-                console.log("IMAGE FAILED:", student.src);
-              }}
-              onLoad={() => {
-                console.log("IMAGE LOADED:", student.src);
-              }}
+             
             />
 
             <div className="student-profile-info">
