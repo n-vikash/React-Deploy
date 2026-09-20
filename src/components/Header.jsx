@@ -24,7 +24,10 @@ const Header = () => {
           {isLoggedIn ? "logout" : "login"}
         </button>
         <button className="btn-icon">
-          <img src="/assets/profile.png" alt="profile" />
+          <img
+            src={`${import.meta.env.BASE_URL}assets/profile.png`}
+            alt="profile"
+          />
         </button>
         <h1>{isLoggedIn ? user?.name : "Student Profile"}</h1>
         <ul className="nav-btns">
