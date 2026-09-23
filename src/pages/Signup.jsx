@@ -2,12 +2,13 @@ import { useState, useRef, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import "../App.css";
-import { userContext } from "../components/userContext";
+import { useSelector, useDispatch } from "react-redux";
+import { setIsLoggedIn, setUser } from "../features/user/UserSlice";
 
 const Signup = () => {
   const navigate = useNavigate();
-  const users = JSON.parse(localStorage.getItem("user")) || [];
-  const { setLoggedIn, setUser } = useContext(userContext);
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const dispatch = useDispatch();
   const len = users.length + 1;
   const [curUser, setCurUser] = useState({
     id: len,
@@ -26,14 +27,12 @@ const Signup = () => {
 
   const Submit = (e) => {
     e.preventDefault();
-    console.log(curUser.password, passRef.current.value);
     if (curUser.password === passRef.current.value) {
       users.push(curUser);
-      console.log(users);
-      setUser(curUser);
+      dispatch(setUser(curUser));
       localStorage.setItem("curUser", JSON.stringify(curUser));
-      localStorage.setItem("user", JSON.stringify(users));
-      setLoggedIn(true);
+      localStorage.setItem("users", JSON.stringify(users));
+      dispatch(setIsLoggedIn());
       localStorage.setItem("isLoggedIn", "true");
       navigate("/");
     } else {

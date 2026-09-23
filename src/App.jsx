@@ -8,7 +8,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import StdentDetails from "./components/StudentDetails";
 import { lazy, Suspense } from "react";
 import Loading from "./components/Suspense";
-import UserProvider from "./components/userContext";
 const Home = lazy(() => import("./pages/Home"));
 const Books = lazy(() => import("./pages/Books"));
 const About = lazy(() => import("./pages/About"));
@@ -128,9 +127,9 @@ const App = () => {
     },
   );
   return (
-    <UserProvider>
+    <>
       <RouterProvider router={router} />
-    </UserProvider>
+    </>
   );
 };
 export default App;

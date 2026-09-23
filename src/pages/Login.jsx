@@ -1,12 +1,14 @@
-import { useState, useRef, useEffect, useContext } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
-import { userContext } from "../components/userContext";
+import { useSelector, useDispatch } from "react-redux";
+import { setIsLoggedIn } from "../features/user/UserSlice";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { setUser, setLoggedIn } = useContext(userContext);
-  const users = JSON.parse(localStorage.getItem("user"));
+  const dispatch = useDispatch();
+
+  const users = JSON.parse(localStorage.getItem("users"));
 
   const [show, setShow] = useState(false);
   const [err, setErr] = useState("");
@@ -20,13 +22,13 @@ const Login = () => {
         userRef.current.value === user.email,
     );
     if (logUser && logUser.password === passRef.current.value) {
-      setUser(logUser);
+      dispatch(setUser(logUser));
       localStorage.setItem("curUser", JSON.stringify(logUser));
       navigate("/");
     } else {
       setErr("⚠ Invalid username/Password ");
     }
-    setLoggedIn(true);
+    dispatch(setIsLoggedIn());
     localStorage.setItem("isLoggedIn", "true");
   };
   const handlekey = (e) => {

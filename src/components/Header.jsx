@@ -1,15 +1,19 @@
-import React, { useContext } from "react";
-import { userContext } from "./userContext";
+import React from "react";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setIsLoggedIn } from "../features/user/UserSlice";
+import { useSelector } from "react-redux";
 const Header = () => {
   const navigate = useNavigate();
-  const { isLoggedIn, user, setLoggedIn, setUser } = useContext(userContext);
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const user = useSelector((state) => state.user.user);
   const loginHandle = () => {
     if (isLoggedIn) {
-      setLoggedIn(false);
-      setUser([]);
+      dispatch(setIsLoggedIn());
+      setUser({});
       localStorage.removeItem("isLoggedIn");
       navigate("/login");
     } else {
