@@ -2,12 +2,12 @@ import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
 import { useSelector, useDispatch } from "react-redux";
-import { setIsLoggedIn } from "../features/user/UserSlice";
+import { setIsLoggedIn,setUser } from "../features/user/UserSlice";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  console.log(`${localStorage.getItem("users")} hlo hi`)
   const users = JSON.parse(localStorage.getItem("users"));
 
   const [show, setShow] = useState(false);

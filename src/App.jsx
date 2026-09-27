@@ -5,13 +5,13 @@ import Novels from "./components/Novels";
 import PreviousPapars from "./components/Papars";
 import ProtectRoutes from "./components/ProtectRoutes";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import StdentDetails from "./components/StudentDetails";
+import ShoppingItmes from "./components/ShoppingItems";
 import { lazy, Suspense } from "react";
 import Loading from "./components/Suspense";
 const Home = lazy(() => import("./pages/Home"));
 const Books = lazy(() => import("./pages/Books"));
 const About = lazy(() => import("./pages/About"));
-const Profiles = lazy(() => import("./pages/Profiles"));
+const Shopping = lazy(() => import("./pages/Shopping"));
 const Details = lazy(() => import("./pages/Details"));
 const Signup = lazy(() => import("./pages/Signup"));
 const Login = lazy(() => import("./pages/Login"));
@@ -33,12 +33,12 @@ const App = () => {
         ),
       },
       {
-        path: "/Profiles",
+        path: "/Shopping",
         element: (
           <div>
             <Header />
             <ProtectRoutes>
-              <Profiles />
+              <Shopping />
             </ProtectRoutes>
           </div>
         ),
@@ -89,11 +89,11 @@ const App = () => {
         ],
       },
       {
-        path: "/Profiles/:id",
+        path: "/Shopping/:id",
         element: (
           <div>
             <Header />
-            <StdentDetails />
+            <ShoppingItmes />
           </div>
         ),
       },

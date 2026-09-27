@@ -5,18 +5,20 @@ import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setIsLoggedIn } from "../features/user/UserSlice";
 import { useSelector } from "react-redux";
+import { setUser } from "../features/user/UserSlice";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const isLoggedIn =useSelector((state) => state.user.isLoggedIn);
   const user = useSelector((state) => state.user.user);
   const loginHandle = () => {
-    if (isLoggedIn) {
-      dispatch(setIsLoggedIn());
-      setUser({});
-      localStorage.removeItem("isLoggedIn");
+    if (!isLoggedIn) {
       navigate("/login");
     } else {
+      dispatch(setIsLoggedIn());
+      dispatch(setUser({}));
+      localStorage.removeItem("curUser");
+      localStorage.removeItem("isLoggedIn");
       navigate("/login");
     }
   };
@@ -45,10 +47,10 @@ const Header = () => {
           </li>
           <li>
             <NavLink
-              to="/Profiles"
+              to="/Shopping"
               className={({ isActive }) => (isActive ? "btn active" : "btn")}
             >
-              Profiles
+              Shopping
             </NavLink>
           </li>
           <li>

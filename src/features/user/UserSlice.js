@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const saveduser = localStorage.getItem("curUser");
+const log = localStorage.getItem("isLoggedIn");
 const UserSlice = createSlice({
   name: "user",
   initialState: {
     user: saveduser ? JSON.parse(saveduser) : {},
-    isLoggedIn: false,
+    isLoggedIn: log ? JSON.parse(log) : false,
   },
   reducers: {
     setUser: (state, action) => {
